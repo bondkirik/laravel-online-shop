@@ -2,16 +2,15 @@
     <div class="thumbnail">
         <img src="/storage/products/iphone_x.jpg" alt="iPhone X 64GB">
         <div class="caption">
-            <h3>iPhone X 64GB</h3>
-            <p>700 EUR</p>
+            <h3>{{ $product->name }}</h3>
+            <p>{{ $product->price }} EUR.</p>
             <p>
-                <a href="{{ route('basket') }}" class="btn btn-primary"
-                   role="button">В корзину</a>
-                @isset($category)
-                    {{ $category->name }}
-                @endisset
-                <a href="/mobiles/iphone_x_64" class="btn btn-default"
+            <form action="{{ route('basket-add', $product) }}" method="POST">
+                <button type="submit" class="btn btn-primary" role="button">В корзину</button>
+                <a href="{{ route('product', [$product->category->code, $product->code]) }}" class="btn btn-default"
                    role="button">Подробнее</a>
+                @csrf
+            </form>
             </p>
         </div>
     </div>
