@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [MainController::class, 'index'])->name('index');
+Route::get('/categories', [MainController::class, 'categories'])->name('categories');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{category}', [MainController::class, 'category'])->name('category');
+
+Route::get('/{category}/{product?}', [MainController::class, 'product'])->name('product');
+
+ROute::get('/basket', [MainController::class, 'basket'])->name('basket');
+
+ROute::get('/basket/place', [MainController::class, 'basket-place'])->name('basket-place');
