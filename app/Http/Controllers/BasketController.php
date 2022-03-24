@@ -14,6 +14,7 @@ class BasketController extends Controller
         if (!is_null($orderId)) {
             $order = Order::findOrFail($orderId);
         }
+
         return view('basket', compact('order'));
     }
 
